@@ -1,1 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><testsuite errors="0" failures="0" name="co.com.sqa.reto.runners.RetoApiRunner" skipped="0" tests="1" time="10.62" timestamp="2026-07-15 12:16:59"><testcase classname="co.com.sqa.reto.runners.RetoApiRunner" name="Consultar lista de usuarios exitosamente"/></testsuite>
