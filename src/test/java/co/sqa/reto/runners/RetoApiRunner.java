@@ -5,7 +5,7 @@ import co.com.sqa.reto.tasks.ConsultarUsuarios;
 import net.serenitybdd.junit5.SerenityJUnit5Extension;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.actors.OnStage;
-import net.serenitybdd.screenplay.actors.OnlineCast;
+import net.serenitybdd.screenplay.actors.Cast;
 import net.serenitybdd.screenplay.rest.abilities.CallAnApi;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,16 +22,15 @@ public class RetoApiRunner {
 
     @BeforeEach
     public void configurarActor() {
-        // 1. Inicializamos el Stage de Screenplay con un reparto online
-        OnStage.setTheStage(new OnlineCast());
+        // Usamos Cast.ofStandardActors() que no requiere dependencias de WebDriver (ideal para APIs)
+        OnStage.setTheStage(Cast.ofStandardActors());
         
-        // 2. Creamos o llamamos al actor en escena y le asignamos la habilidad REST de manera segura
+        // Creamos y asociamos la habilidad REST al actor de forma segura en el Stage
         OnStage.theActorCalled("Analista QA").can(CallAnApi.at(baseUrl));
     }
 
     @Test
     public void consultarListaDeUsuariosExitosamente() {
-        // 3. Obtenemos al actor que ya está en el centro de atención (Spotlight)
         theActorInTheSpotlight().attemptsTo(
                 ConsultarUsuarios.deLaPagina(2)
         );
