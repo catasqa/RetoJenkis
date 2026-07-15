@@ -25,8 +25,11 @@ public class RetoApiRunner {
 
     @BeforeAll
     public static void setup() {
-        // Esto obliga a RestAssured a volcar TODO el Request y Response en la consola estándar
-        RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
+        // Creamos una lista mutable para evitar el UnsupportedOperationException
+        List<Filter> filters = new ArrayList<>();
+        filters.add(new RequestLoggingFilter());
+        filters.add(new ResponseLoggingFilter());
+        RestAssured.filters(filters);
     }
 
     @BeforeEach
