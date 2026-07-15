@@ -13,14 +13,15 @@ pipeline {
                 checkout scm
             }
         }
-
+        
         stage('Clean & Test') {
             steps {
-                echo 'Ejecutando pruebas de API con Serenity...'
-                // Damos permisos de ejecución al wrapper de Gradle en el entorno de Jenkins
-                sh 'chmod +x gradlew'
-                // Ejecutamos la tarea de limpieza y testeo
-                sh './gradlew clean test'
+                echo 'Ejecutando pruebas de API con Serenity usando Java 17...'
+                // Forzamos a Jenkins a usar tu JDK 17 de Temurin
+                withEnv(['JAVA_HOME=/Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home']) {
+                    sh 'chmod +x gradlew'
+                    sh './gradlew clean test'
+                }
             }
         }
 
@@ -40,3 +41,4 @@ pipeline {
         }
     }
 }
+
