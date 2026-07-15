@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+    id 'net.serenity-bdd.serenity-gradle-plugin' version '3.9.8'
+}
+
+group 'co.com.sqa.reto'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Serenity Core y Screenplay REST en versiones estables 3.x[cite: 1]
+    implementation 'net.serenity-bdd:serenity-core:3.9.8'
+    implementation 'net.serenity-bdd:serenity-screenplay:3.9.8'
+    implementation 'net.serenity-bdd:serenity-screenplay-rest:3.9.8'
+    
+    // JUnit 5 & Serenity JUnit
+    testImplementation 'net.serenity-bdd:serenity-junit5:3.9.8'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
+    
+    // Logging para ver trazas limpias
+    implementation 'org.slf4j:slf4j-simple:2.0.7'
+}
+
+test {
+    useJUnitPlatform()
+    testLogging.showStandardStreams = true
+    systemProperties System.getProperties()
+}
+
+serenity {
+    reports = ["html"]
+}
