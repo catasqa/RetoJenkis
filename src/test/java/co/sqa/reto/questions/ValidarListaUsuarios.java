@@ -1,4 +1,4 @@
-package co.com.sqa.reto.questions;
+package co.sqa.reto.questions;
 
 import net.serenitybdd.rest.SerenityRest;
 import net.serenitybdd.screenplay.Question;

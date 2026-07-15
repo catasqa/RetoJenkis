@@ -1,4 +1,4 @@
-package co.com.sqa.reto.tasks;
+package co.sqa.reto.tasks;
 
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
