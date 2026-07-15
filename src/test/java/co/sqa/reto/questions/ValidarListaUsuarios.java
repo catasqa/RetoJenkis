@@ -5,18 +5,27 @@ import net.serenitybdd.screenplay.Question;
 
 public class ValidarListaUsuarios {
 
+    // Evitamos instanciar la clase utilitaria
+    private ValidarListaUsuarios() {}
+
     public static Question<Integer> codigoDeRespuesta() {
         return Question.about("Código de respuesta HTTP")
-                .answeredBy(actor -> SerenityRest.lastResponse().statusCode());
+                .answeredBy(actor -> {
+                    return SerenityRest.lastResponse().statusCode();
+                });
     }
 
     public static Question<Integer> laPaginaRetornada() {
         return Question.about("La página en la respuesta")
-                .answeredBy(actor -> SerenityRest.lastResponse().jsonPath().getInt("page"));
+                .answeredBy(actor -> {
+                    return SerenityRest.lastResponse().path("page");
+                });
     }
 
     public static Question<Integer> elTotalDePaginas() {
         return Question.about("El total de páginas en la respuesta")
-                .answeredBy(actor -> SerenityRest.lastResponse().jsonPath().getInt("total_pages"));
+                .answeredBy(actor -> {
+                    return SerenityRest.lastResponse().path("total_pages");
+                });
     }
 }
