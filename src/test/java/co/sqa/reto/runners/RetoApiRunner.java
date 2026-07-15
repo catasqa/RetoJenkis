@@ -5,10 +5,16 @@ import co.com.sqa.reto.tasks.ConsultarUsuarios;
 import net.serenitybdd.junit5.SerenityJUnit5Extension;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.rest.abilities.CallAnApi;
-import org.junit.jupiter.api.BeforeAll; // <-- ¡Esta importación hacía falta!
+import org.junit.jupiter.api.BeforeAll; 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+
+// === ¡NUEVAS IMPORTACIONES PARA EVITAR EL ERROR! ===
+import java.util.ArrayList;
+import java.util.List;
+import io.restassured.filter.Filter;
+// ===================================================
 
 import static net.serenitybdd.screenplay.GivenWhenThen.*;
 import static org.hamcrest.Matchers.equalTo;
@@ -25,7 +31,7 @@ public class RetoApiRunner {
 
     @BeforeAll
     public static void setup() {
-        // Creamos una lista mutable para evitar el UnsupportedOperationException
+        // Ahora sí compilará perfectamente usando listas mutables
         List<Filter> filters = new ArrayList<>();
         filters.add(new RequestLoggingFilter());
         filters.add(new ResponseLoggingFilter());
