@@ -22,17 +22,23 @@ public class RetoApiRunner {
 
     @BeforeEach
     public void configurarActor() {
+        // Preparamos el escenario e inicializamos al actor con su nombre
         OnStage.setTheStage(Cast.ofStandardActors());
-        OnStage.theActorCalled("Analista QA").can(CallAnApi.at(baseUrl));
+        OnStage.theActorCalled("Analista QA");
     }
 
     @Test
     public void consultarListaDeUsuariosExitosamente() {
-        theActorInTheSpotlight().attemptsTo(
+        // GIVEN: Dado que el actor en escena tiene la habilidad de consumir la API REST
+        givenThat(theActorInTheSpotlight()).can(CallAnApi.at(baseUrl));
+
+        // WHEN: Cuando el actor realiza la acción de consultar los usuarios de la página 2
+        when(theActorInTheSpotlight()).attemptsTo(
                 ConsultarUsuarios.deLaPagina(2)
         );
 
-        theActorInTheSpotlight().should(
+        // THEN: Entonces el actor valida que las respuestas cumplan con los criterios esperados
+        then(theActorInTheSpotlight()).should(
                 seeThat(ValidarListaUsuarios.codigoDeRespuesta(), equalTo(200)),
                 seeThat(ValidarListaUsuarios.laPaginaRetornada(), equalTo(2)),
                 seeThat(ValidarListaUsuarios.elTotalDePaginas(), equalTo(2))
