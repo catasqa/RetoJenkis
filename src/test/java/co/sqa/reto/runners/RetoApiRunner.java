@@ -20,7 +20,7 @@ public class RetoApiRunner {
 
     @BeforeEach
     public void configurarActor() {
-        // Serenity se encarga de acoplar RestAssured con el actor de forma interna y segura
+        // Serenity se encarga de acoplar de forma segura la API al actor
         analistaQA.can(CallAnApi.at(baseUrl));
     }
 
