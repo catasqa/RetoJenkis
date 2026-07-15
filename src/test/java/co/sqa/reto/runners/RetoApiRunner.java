@@ -1,7 +1,7 @@
-package co.com.sqa.reto.runners;
+package co.sqa.reto.runners; 
 
-import co.com.sqa.reto.questions.ValidarListaUsuarios;
-import co.com.sqa.reto.tasks.ConsultarUsuarios;
+import co.sqa.reto.questions.ValidarListaUsuarios; 
+import co.sqa.reto.tasks.ConsultarUsuarios;       
 import net.serenitybdd.junit5.SerenityJUnit5Extension;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.actors.OnStage;
@@ -22,10 +22,7 @@ public class RetoApiRunner {
 
     @BeforeEach
     public void configurarActor() {
-        // Usamos Cast.ofStandardActors() que no requiere dependencias de WebDriver (ideal para APIs)
         OnStage.setTheStage(Cast.ofStandardActors());
-        
-        // Creamos y asociamos la habilidad REST al actor de forma segura en el Stage
         OnStage.theActorCalled("Analista QA").can(CallAnApi.at(baseUrl));
     }
 
